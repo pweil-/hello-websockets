@@ -28,19 +28,19 @@ func main() {
 	go func(){
 		fmt.Printf("Serving at :9999\n")
 		err := http.ListenAndServe(":9999", nil)
-		checkError(err, fmt.Sprintf("Error in ListenAndServe: %s", err.Error())
+		checkError(err, "Error in ListenAndServe")
 	}()
 
 	go func() {
 		err := writeCert(append([]byte(ExampleCert), []byte(ExampleCACert)...), "/tmp/cert.pem")
-		checkError(err, fmt.Sprintf("Error writing cert: %s", err.Error()))
+		checkError(err, "Error writing cert")
 
 		err = writeCert([]byte(ExampleKey), "/tmp/key.pem")
-		checkError(err, fmt.Sprintf("Error writing cert: %s", err.Error()))
+		checkError(err, "Error writing cert")
 
 		fmt.Printf("Serving TLS at :9443\n")
 		err = http.ListenAndServeTLS(":9443", "/tmp/cert.pem", "/tmp/key.pem", nil)
-		checkError(err,fmt.Sprintf("Error in ListenAndServeTLS: %s", err.Error()) )
+		checkError(err, "Error in ListenAndServeTLS")
 	}()
 
 	select{}
@@ -48,7 +48,7 @@ func main() {
 
 func checkError (err error, msg string){
 	if err != nil {
-		panic(msg)
+		panic(msg + ":" + err.Error())
 	}
 }
 

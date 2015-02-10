@@ -1,0 +1,26 @@
+{
+    "id": "hello-websocket",
+    "kind": "Pod",
+    "apiVersion":"v1beta2",
+    "labels": {
+        "name": "hello-websocket"
+    },
+    "desiredState": {
+        "manifest": {
+            "version": "v1beta1",
+            "id": "hello-websocket",
+            "containers": [{
+                "name": "hello-websocket",
+                "image": "pweil/hello-websocket",
+                "ports": [
+                    {
+                        "containerPort": 9999
+                    },
+                    {
+                        "containerPort": 9443
+                    }
+                ]
+            }]
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "kind": "Service",
+    "apiVersion": "v1beta1",
+    "id": "hello-ws-secure",
+    "port": 27443,
+    "containerPort": 9443,
+    "selector": {
+        "name": "hello-websocket"
+    }
+}

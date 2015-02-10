@@ -1,0 +1,10 @@
+{
+    "kind": "Service",
+    "apiVersion": "v1beta1",
+    "id": "hello-ws",
+    "port": 27017,
+    "containerPort": 9999,
+    "selector": {
+        "name": "hello-websocket"
+    }
+}

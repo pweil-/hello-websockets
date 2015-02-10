@@ -1,0 +1,11 @@
+{
+    "metadata": {
+        "name": "ws-passthrough"
+    },
+    "id": "ws-passthrough",
+    "apiVersion": "v1beta1",
+    "kind": "Route",
+    "host": "www.example.com",
+    "serviceName": "hello-ws-secure",
+    "tls": { "termination" : "passthrough" }
+}
