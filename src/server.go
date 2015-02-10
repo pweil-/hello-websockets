@@ -18,24 +18,11 @@ import (
 )
 
 func echoServer(ws *websocket.Conn) {
-	fmt.Printf("in echo server\n")
-	buff := make([]byte, 50)
-	_, err := ws.Read(buff)
+	_, err := io.Copy(ws, ws)
+
 	if err != nil {
-		fmt.Printf("Error reading socket: %s\n", err.Error())
+		fmt.Printf("Error writing to socket: %s\n", err.Error())
 	}
-
-	fmt.Printf("got data: %s\n", string(buff))
-	ws.Write(buff)
-	ws.Close()
-	fmt.Printf("done echo server\n")
-
-
-//	_, err := io.Copy(ws, ws)
-//
-//	if err != nil {
-//		fmt.Printf("Error writing to socket: %s\n", err.Error())
-//	}
 }
 
 
