@@ -1,0 +1,10 @@
+{
+    "metadata": {
+        "name": "ws-unsecure"
+    },
+    "id": "ws-unsecure",
+    "apiVersion": "v1beta1",
+    "kind": "Route",
+    "host": "www.example.com",
+    "serviceName": "hello-ws"
+}
