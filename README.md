@@ -53,7 +53,7 @@ All of these use cases build upon each other.  If you are not following them in 
 to create any missing services or routes.
 
 
-1.  Unsecure websocket
+##  Unsecure websocket
 
 ```
 $ osc create -f service_unsecure.json 
@@ -78,7 +78,7 @@ To test this route click the Test Unsecure link.  You should see output as depic
 
 ![Testing unsecure route](https://github.com/pweil-/hello-websockets/blob/master/openshift/test_images/unsecure_route.png)
 
-2.  Edge terminated websocket
+##  Edge terminated websocket
 
 ```
 $ osc create -f route_edge.json 
@@ -93,7 +93,7 @@ To test this route click the Test Secure link. You should see output as depicted
 
 ![Testing edge route](https://github.com/pweil-/hello-websockets/blob/master/openshift/test_images/edge_route.png)
 
-3.  Pass through route
+##  Pass through route
 
 ```
 $ osc create -f route_passthrough.json 
@@ -106,7 +106,7 @@ To test this route click the Test Secure link. You should see output as depicted
 
 ![Testing pass through route](https://github.com/pweil-/hello-websockets/blob/master/openshift/test_images/route_passthrough.png)
 
-4.  Re-encrypt route
+##  Re-encrypt route
 
 ```
 $ osc delete route ws-passthrough
