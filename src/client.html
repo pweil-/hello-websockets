@@ -14,10 +14,12 @@
                     app.type = type;
 
                     var url;
-                    if (type == "secure"){
-                        url = "wss://www.example.com:9443/echo";
+                    if (type == "secure") {
+                        url = "wss://www.example.com/echo";
+                    }else if (type == "reencrypt"){
+                        url = "wss://www.example2.com/echo";
                     }else{
-                        url = "ws://localhost:9999/echo";
+                        url = "ws://www.example.com/echo";
                     }
 
                     app.write(app.display.status, "Testing " + type + " socket");
@@ -25,12 +27,17 @@
                     app.ws.onopen = app.onOpen;
                     app.ws.onclose = app.onClose;
                     app.ws.onmessage = app.onMessage;
+                    app.ws.onerror = app.onError;
+                },
+
+                onError: function(e){
+                    app.write(app.display.status, "Error:" + e)
                 },
 
                 onOpen: function(e){
                     msg = app.type + "-Hello";
                     app.write(app.display.status, "connected");
-                    app.write(app.display.output, "Sending: " + msg);
+                    app.write(app.display.status, "Sending: " + msg);
                     app.ws.send(msg);
                 },
 
@@ -40,7 +47,7 @@
                 },
 
                 onClose: function(e){
-                    app.write(app.display.status, "closed")
+                    app.write(app.display.status, "closed");
                 },
 
                 write: function(target, text){
@@ -54,6 +61,7 @@
     <body>
         <a href="#" onclick="app.testSocket('unsecure');return false;">Test Unsecure</a>
         <a href="#" onclick="app.testSocket('secure');return false;">Test Secure</a>
+        <a href="#" onclick="app.testSocket('reencrypt');return false;">Test Reencrypt</a>
         <h2>WebSocket Test</h2>
         <div id="status">
             <h4>Status</h4>
