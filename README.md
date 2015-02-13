@@ -150,38 +150,4 @@ $ cat /etc/hosts
 Now, test by clicking the Test Reencrypt link in the browser. 
 
 
-.............. this test case is failing ....................
-
-It appears that the buffer the server receives is empty.  I can write to the socket just fine if I manually
-add some writes there.  It gets an EOF on a read.  The ws close code is 1006 which is reserved for abnormal closes
-because of errors but no error reason is given for the code
-
-```go
-func echoServer(ws *websocket.Conn) {
-	fmt.Printf("in echo server\n")
-	buff := make([]byte, 50)
-	_, err := ws.Read(buff)
-	if err != nil {
-		fmt.Printf("Error reading socket: %s\n", err.Error())
-	}
-
-	fmt.Printf("got data: %s\n", string(buff))
-	ws.Write(buff)
-	ws.Close()
-	fmt.Printf("done echo server\n")
-}
-```
-
-
-```
-# using the reencrypt route:
-in echo server
-Error reading socket: EOF
-got data: 
-done echo server
-
-# deleted the reencrypt route and used a passthrough route:
-in echo server
-got data: secure-Hello
-done echo server
-```
+![Testing reencrypt route](https://github.com/pweil-/hello-websockets/blob/master/openshift/test_images/route_reencrypt.png)
