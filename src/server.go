@@ -18,11 +18,14 @@ import (
 )
 
 func echoServer(ws *websocket.Conn) {
+	fmt.Printf("In echo server\n")
 	_, err := io.Copy(ws, ws)
 
 	if err != nil {
 		fmt.Printf("Error writing to socket: %s\n", err.Error())
 	}
+
+	fmt.Printf("End echo server\n")
 }
 
 
