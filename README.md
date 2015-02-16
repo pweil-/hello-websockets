@@ -96,9 +96,11 @@ To test this route click the Test Secure link. You should see output as depicted
 ##  Pass through route
 
 ```
-$ osc create -f route_passthrough.json 
+$ osc delete route ws-edge
+ws-edge
+$ osc create -f route_passthrough.json
 ws-passthrough
-$ osc create -f service_secure.json 
+$ osc create -f service_secure.json
 hello-ws-secure
 ```
 
